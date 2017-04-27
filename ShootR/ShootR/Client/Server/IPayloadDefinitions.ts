@@ -83,5 +83,6 @@ declare module ShootR.Server {
         Notification: any;
         KilledByName: any;
         KilledByPhoto: any;
+        LastCommandProcessed: any;
     }
 }

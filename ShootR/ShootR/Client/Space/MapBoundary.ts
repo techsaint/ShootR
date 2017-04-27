@@ -13,9 +13,11 @@ module ShootR {
         private _bounceMultiplier: eg.Vector2d;
 
         constructor(from: eg.Vector2d, to: eg.Vector2d) {
-            this.Graphic = new eg.Graphics.Line2d(from.X, from.Y, to.X, to.Y, 1, MapBoundary.Color);
+            let temp = new eg.Graphics.Line2d(from.X, from.Y, to.X, to.Y, 1, MapBoundary.Color);
+            super(temp.GetDrawBounds());
+            this.Graphic = temp;
 
-            super(this.Graphic.GetDrawBounds());
+            
 
             this.Graphic.LineWidth = MapBoundary.BoundaryWidth;
 

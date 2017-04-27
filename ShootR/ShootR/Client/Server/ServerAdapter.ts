@@ -34,14 +34,14 @@ module ShootR.Server {
             this.OnPingRequest = new eg.EventHandler();
             this.OnMapResize = new eg.EventHandler1<eg.Size2d>();
             this.OnMessageReceived = new eg.EventHandler1<ChatMessage>();
-
+            //this.Connection = Connection;
             this._connectionManager = new ServerConnectionManager(authCookieName);
 
-            (<any>this.Proxy.invoke) = () => {
-                if ((<any>this.Connection).state === $.signalR.connectionState.connected) {
+            (this.Proxy.invoke) = function() {
+                if ((this.Connection).state === $.signalR.connectionState.connected) {
                     return savedProxyInvoke.apply(this.Proxy, arguments);
                 }
-            };
+            }.bind(this);
         }
 
         public Negotiate(): JQueryPromise<IClientInitialization> {

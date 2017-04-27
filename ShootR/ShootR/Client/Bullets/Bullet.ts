@@ -19,9 +19,11 @@ module ShootR {
 
         constructor(payload: Server.IBulletData, contentManager: eg.Content.ContentManager) {
             // Going to use the rectangle to "hold" all the other graphics
-            this.Graphic = new BulletGraphic(payload.MovementController.Position, Bullet.SIZE, contentManager);
+            let temp = new BulletGraphic(payload.MovementController.Position, Bullet.SIZE, contentManager);
+            super(temp.GetDrawBounds());
+            this.Graphic = temp;
 
-            super(this.Graphic.GetDrawBounds());
+            
 
             this.OnExplosion = new eg.EventHandler();
             this.MovementController = new BulletMovementController(new Array<eg.IMoveable>(this.Bounds, this.Graphic), payload.MovementController);
